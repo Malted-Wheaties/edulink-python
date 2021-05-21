@@ -9,7 +9,7 @@ import utils
 
 # errors
 # InvalidSchoolCode
-class ProvisioningError(Exception):
+class InvalidSchoolCode(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -36,17 +36,4 @@ def server(code: str):
         return provisioning_content["result"]["school"]["server"]
     else:
         msg = provisioning_content["result"]["error"]
-        raise ProvisioningError(msg)
-
-"""
-code <- USERINPUT
-
-result = provisioning.get_server(code)
-
-if result.success is False:
-    msg = result.error
-    raise ProvisioningError(msg)
-"""
-
-#
-#
+        raise InvalidSchoolCode(msg)
