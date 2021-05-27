@@ -3,7 +3,6 @@ import utils
 
 import edulink_errors as errors
 
-# ↳
 # TODO:
     # Add add support for alternative login methods other than google, eg microsoft
     # Cross-reference Group ID's with relevant information to bulk out the information in Groups.
@@ -124,3 +123,4 @@ def login(server: str, username: str, password: str):
     else:
         msg = content["result"]["error"]
         raise errors.SchoolDetailsError(msg)
+        

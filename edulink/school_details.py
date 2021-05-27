@@ -4,12 +4,11 @@ import utils
 import edulink_errors as errors
 
 
-# TODO: Alternative login methods, eg Microsoft
 class School:
-    def __init__(self, name, google_login, logo):
+    def __init__(self, name, google_login, logo_base64):
         self.name = name
         self.google_login = google_login
-        self.logo = logo
+        self.logo_base64 = logo_base64
 
 
 def school(code: str):
@@ -36,14 +35,11 @@ def school(code: str):
     if content["result"]["success"] is True:
         name = content["result"]["establishment"]["name"]
         google_login = content["result"]["establishment"]["idp_login"]["google"]
-        logo = content["result"]["establishment"]["logo"]
+        logo_base64 = content["result"]["establishment"]["logo"]
 
-        school = School(name, google_login, logo)
+        school = School(name, google_login, logo_base64)
         return school
 
     else:
         msg = content["result"]["error"]
         raise errors.SchoolDetailsError(msg)
-
-
-def save_logo(school: School): pass
